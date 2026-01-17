@@ -86,6 +86,26 @@ app.get("/api/payment-status/:orderId", (req, res) => {
   return res.status(404).json({ error: "Order not found" });
 });
 
+// 8️⃣ List all products (ID + Name)
+app.get("/api/products", (req, res) => {
+  const productList = products.map(p => ({
+    productId: p.productId,
+    name: p.name
+  }));
+
+  res.json(productList);
+});
+
+// 9️⃣ List all orders (ID + Status)
+app.get("/api/orders", (req, res) => {
+  const orderList = orders.map(o => ({
+    orderId: o.orderId,
+    status: o.status
+  }));
+
+  res.json(orderList);
+});
+
 // 4️⃣ Return / Refund
 app.post("/api/return-request", (req, res) => {
   const { orderId, reason } = req.body;
