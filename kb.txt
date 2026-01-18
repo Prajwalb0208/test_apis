@@ -1,0 +1,42 @@
+{
+  "faqs": [
+    {
+      "question": "What is your return policy?",
+      "answer": "You can return items within 30 days of delivery. Items must be unused and in original packaging."
+    },
+    {
+      "question": "Do you ship internationally?",
+      "answer": "Yes, we ship worldwide. Shipping charges vary by destination."
+    },
+    {
+      "question": "How do I track my order?",
+      "answer": "You can track your order using your Order ID on our website or ask me and I can provide the status."
+    },
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept credit/debit cards, PayPal, and UPI payments."
+    },
+    {
+      "question": "How do I redeem loyalty points?",
+      "answer": "You can redeem loyalty points during checkout. Each point is worth $0.01."
+    },
+    {
+      "question": "Do you have discounts or promo codes?",
+      "answer": "Check our Promotions page or ask me for current deals. We often have seasonal discounts."
+    },
+    {
+      "question": "Can I change my delivery address?",
+      "answer": "Yes, you can update your delivery address before your order is shipped."
+    },
+    {
+      "question": "What if my product is damaged?",
+      "answer": "You can request a return or replacement within 30 days if the product is damaged or defective."
+    }
+  ],
+  "storeInfo": {
+    "hours": "Mon-Sat: 9 AM - 9 PM, Sun: 10 AM - 6 PM",
+    "contactEmail": "support@shopease-demo.com",
+    "contactPhone": "+1-800-555-1234",
+    "website": "https://shopease-demo.com"
+  }
+}

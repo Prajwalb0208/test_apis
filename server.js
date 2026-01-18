@@ -137,6 +137,41 @@ app.get("/api/health", (req,res) => {
   res.json({ status: "OK", timestamp: new Date() });
 });
 
+// 🔟 Place an Order
+app.post("/api/order", (req, res) => {
+  const { userId, items } = req.body;
+
+  // Basic validation
+  if (!userId || !Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ error: "userId and items are required" });
+  }
+
+  // Optional: check if user exists
+  const userExists = accounts.find(a => a.userId === userId);
+  if (!userExists) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  // Generate new orderId
+  const newOrderId = (Number(orders[orders.length - 1].orderId) + 1).toString();
+
+  const newOrder = {
+    orderId: newOrderId,
+    status: "Processing",
+    eta: "5 days",
+    items
+  };
+
+  // Save order
+  orders.push(newOrder);
+
+  res.status(201).json({
+    ...newOrder,
+    message: "Order placed successfully"
+  });
+});
+
+
 // Start server
 const PORT = 3000;
 app.listen(PORT, () => console.log(`ShopEase API running on port ${PORT}`));
