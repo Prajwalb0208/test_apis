@@ -70,11 +70,18 @@ app.get("/api/order-status/:orderId", (req, res) => {
   return res.status(404).json({ error: "Order not found" });
 });
 
-// 2️⃣ Product Info
-app.get("/api/product-info/:productId", (req, res) => {
-  const { productId } = req.params;
-  const product = products.find(p => p.productId === productId);
-  if (product) return res.json(product);
+// 2️⃣ Product Info (by Product Name)
+app.get("/api/product-info/name/:productName", (req, res) => {
+  const { productName } = req.params;
+
+  const product = products.find(
+    p => p.name.toLowerCase() === productName.toLowerCase()
+  );
+
+  if (product) {
+    return res.json(product);
+  }
+
   return res.status(404).json({ error: "Product not found" });
 });
 
