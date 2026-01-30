@@ -26,20 +26,20 @@ const orders = [
 ];
 
 const products = [
-  { productId: "P001", name: "Sneakers", price: 79.99, stock: 10, sizes: ["7","8","9","10"], color: ["Black","White"] },
-  { productId: "P002", name: "T-Shirt", price: 19.99, stock: 25, sizes: ["S","M","L","XL"], color: ["Red","Blue","Black"] },
-  { productId: "P004", name: "T-Shirt1", price: 29.99, stock: 45, sizes: ["M","L","XL"], color: ["Red","Blue","Black","Green"] },
-  { productId: "P003", name: "Headphones", price: 129.99, stock: 5, color: ["Black","Silver"] },
-  { productId: "P005", name: "Jacket", price: 89.99, stock: 15, sizes: ["S","M","L","XL"], color: ["Black","Brown"] },
-  { productId: "P006", name: "Jeans", price: 59.99, stock: 30, sizes: ["28","30","32","34"], color: ["Blue","Black"] },
-  { productId: "P007", name: "Socks", price: 9.99, stock: 100, sizes: ["One Size"], color: ["White","Black","Gray"] },
-  { productId: "P008", name: "Hat", price: 24.99, stock: 20, sizes: ["One Size"], color: ["Black","White","Red"] },
-  { productId: "P009", name: "Gloves", price: 34.99, stock: 12, sizes: ["S","M","L"], color: ["Black","Gray","Brown"] },
-  { productId: "P010", name: "Scarf", price: 39.99, stock: 8, sizes: ["One Size"], color: ["Red","Blue","Gray","Black"] },
-  { productId: "P011", name: "Shoes", price: 99.99, stock: 18, sizes: ["6","7","8","9","10","11"], color: ["Black","White","Brown"] },
-  { productId: "P012", name: "Watch", price: 199.99, stock: 5, sizes: ["One Size"], color: ["Silver","Gold","Black"] },
-  { productId: "P013", name: "Sunglasses", price: 149.99, stock: 25, sizes: ["One Size"], color: ["Black","Brown","Gold"] },
-  { productId: "P014", name: "Belt", price: 44.99, stock: 35, sizes: ["S","M","L","XL"], color: ["Black","Brown","Navy"] },
+  { productId: "P001", name: "Sneakers", price: 79.99, stock: 10, sizes: ["7", "8", "9", "10"], color: ["Black", "White"] },
+  { productId: "P002", name: "T-Shirt", price: 19.99, stock: 25, sizes: ["S", "M", "L", "XL"], color: ["Red", "Blue", "Black"] },
+  { productId: "P004", name: "T-Shirt1", price: 29.99, stock: 45, sizes: ["M", "L", "XL"], color: ["Red", "Blue", "Black", "Green"] },
+  { productId: "P003", name: "Headphones", price: 129.99, stock: 5, color: ["Black", "Silver"] },
+  { productId: "P005", name: "Jacket", price: 89.99, stock: 15, sizes: ["S", "M", "L", "XL"], color: ["Black", "Brown"] },
+  { productId: "P006", name: "Jeans", price: 59.99, stock: 30, sizes: ["28", "30", "32", "34"], color: ["Blue", "Black"] },
+  { productId: "P007", name: "Socks", price: 9.99, stock: 100, sizes: ["One Size"], color: ["White", "Black", "Gray"] },
+  { productId: "P008", name: "Hat", price: 24.99, stock: 20, sizes: ["One Size"], color: ["Black", "White", "Red"] },
+  { productId: "P009", name: "Gloves", price: 34.99, stock: 12, sizes: ["S", "M", "L"], color: ["Black", "Gray", "Brown"] },
+  { productId: "P010", name: "Scarf", price: 39.99, stock: 8, sizes: ["One Size"], color: ["Red", "Blue", "Gray", "Black"] },
+  { productId: "P011", name: "Shoes", price: 99.99, stock: 18, sizes: ["6", "7", "8", "9", "10", "11"], color: ["Black", "White", "Brown"] },
+  { productId: "P012", name: "Watch", price: 199.99, stock: 5, sizes: ["One Size"], color: ["Silver", "Gold", "Black"] },
+  { productId: "P013", name: "Sunglasses", price: 149.99, stock: 25, sizes: ["One Size"], color: ["Black", "Brown", "Gold"] },
+  { productId: "P014", name: "Belt", price: 44.99, stock: 35, sizes: ["S", "M", "L", "XL"], color: ["Black", "Brown", "Navy"] },
 ];
 
 const accounts = [
@@ -66,7 +66,7 @@ const accounts = [
 app.get("/api/order-status/:orderId", (req, res) => {
   const { orderId } = req.params;
   const order = orders.find(o => o.orderId === orderId);
-  if(order) return res.json(order);
+  if (order) return res.json(order);
   return res.status(404).json({ error: "Order not found" });
 });
 
@@ -74,7 +74,7 @@ app.get("/api/order-status/:orderId", (req, res) => {
 app.get("/api/product-info/:productId", (req, res) => {
   const { productId } = req.params;
   const product = products.find(p => p.productId === productId);
-  if(product) return res.json(product);
+  if (product) return res.json(product);
   return res.status(404).json({ error: "Product not found" });
 });
 
@@ -82,7 +82,7 @@ app.get("/api/product-info/:productId", (req, res) => {
 app.get("/api/payment-status/:orderId", (req, res) => {
   const { orderId } = req.params;
   const order = orders.find(o => o.orderId === orderId);
-  if(order) return res.json({ orderId, paymentStatus: "Paid" });
+  if (order) return res.json({ orderId, paymentStatus: "Paid" });
   return res.status(404).json({ error: "Order not found" });
 });
 
@@ -110,7 +110,7 @@ app.get("/api/orders", (req, res) => {
 app.post("/api/return-request", (req, res) => {
   const { orderId, reason } = req.body;
   const order = orders.find(o => o.orderId === orderId);
-  if(!order) return res.status(404).json({ error: "Order not found" });
+  if (!order) return res.status(404).json({ error: "Order not found" });
   return res.json({ orderId, status: "Return requested", reason, refundETA: "5-7 business days" });
 });
 
@@ -118,7 +118,7 @@ app.post("/api/return-request", (req, res) => {
 app.get("/api/account/:userId", (req, res) => {
   const { userId } = req.params;
   const account = accounts.find(a => a.userId === userId);
-  if(account) return res.json(account);
+  if (account) return res.json(account);
   return res.status(404).json({ error: "Account not found" });
 });
 
@@ -133,7 +133,7 @@ app.get("/api/recommendation/:userId", (req, res) => {
 });
 
 // 7️⃣ General Health Check
-app.get("/api/health", (req,res) => {
+app.get("/api/health", (req, res) => {
   res.json({ status: "OK", timestamp: new Date() });
 });
 
