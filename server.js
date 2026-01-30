@@ -70,7 +70,7 @@ app.get("/api/order-status/:orderId", (req, res) => {
   return res.status(404).json({ error: "Order not found" });
 });
 
-// 2️⃣ Product Info (by Product Name)
+// Product Info (FULL details by Product Name)
 app.get("/api/product-info/name/:productName", (req, res) => {
   const { productName } = req.params;
 
@@ -78,12 +78,20 @@ app.get("/api/product-info/name/:productName", (req, res) => {
     p => p.name.toLowerCase() === productName.toLowerCase()
   );
 
-  if (product) {
-    return res.json(product);
+  if (!product) {
+    return res.status(404).json({ error: "Product not found" });
   }
 
-  return res.status(404).json({ error: "Product not found" });
+  res.json({
+    productId: product.productId,
+    name: product.name,
+    price: product.price,
+    availableStock: product.stock,
+    availableSizes: product.sizes || [],
+    availableColors: product.color || []
+  });
 });
+
 
 // 3️⃣ Payment Status
 app.get("/api/payment-status/:orderId", (req, res) => {
