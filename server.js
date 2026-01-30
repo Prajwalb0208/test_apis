@@ -92,6 +92,25 @@ app.get("/api/product-info/name/:productName", (req, res) => {
   });
 });
 
+app.get("/api/product-info", (req, res) => {
+  let { name } = req.query;
+
+  if (!name) {
+    return res.status(400).json({ error: "Product name required" });
+  }
+
+  name = name.toLowerCase().trim();
+
+  const product = products.find(
+    p => p.name.toLowerCase() === name
+  );
+
+  if (!product) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+
+  res.json(product);
+});
 
 // 3️⃣ Payment Status
 app.get("/api/payment-status/:orderId", (req, res) => {
